@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    image: 'spring-boot-app'
+    ports:
+      - '8080'
+    volumes:
+      - './app:/app'
+    depends_on:
+      - database
+  database:
+    image: 'postgres:15.2'
+    ports:
+      - '5432'
+    environment:
+      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_DB=mydb'
+      - 'POSTGRES_PASSWORD=secret'
